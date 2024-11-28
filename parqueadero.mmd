@@ -1,0 +1,49 @@
+classDiagram
+    class Parqueadero {
+        + Str nombre
+        + Str direccion
+        + Int capacidadTotal
+        + Int espaciosDisponibles
+        + registrarIngresoVehiculo(Vehiculo)
+        + registrarSalidaVehiculo(Vehiculo)
+        + obtenerEspaciosDisponibles()
+    }
+    class EspacioParqueo {
+        + Int numero
+        + Bool estado
+        + Vehiculo vehiculo
+        + asignarVehiculo(Vehiculo)
+        + liberarEspacio()
+    }
+    class Vehiculo {
+        + Str placa
+        + Bool tipo
+        + Propietario propietario
+        + obtenerInformacion(): String
+    }
+    class Propietario {
+        + Str nombre
+        + Str telefono
+        + Str correo
+        + obtenerContacto(): String
+    }
+    class Tarifa {
+        + Bool tipoVehiculo
+        + Float precioPorHora
+        + calcularCosto(TiempoEstadia): Double
+    }
+    class Registro {
+        + Vehiculo vehiculo
+        + EspacioParqueo espacio
+        + Int horaEntrada
+        + Int horaSalida
+        + registrarSalida()
+        + calcularCosto()
+    }
+
+    Parqueadero  <-- EspacioParqueo : administra espacios
+    EspacioParqueo  <--  Vehiculo : asignar vehiculo, liberar espacio
+    Vehiculo  <--  Propietario : obtener informacion
+    Registro  <--  Vehiculo : calcular costo, registrar salida
+    Registro  <--  EspacioParqueo : asociar espacio ocupado
+    Parqueadero  <--  Tarifa : calcular costo
