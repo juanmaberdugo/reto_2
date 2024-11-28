@@ -46,12 +46,13 @@ classDiagram
         + calcularCosto()
     }
 
-    Parqueadero  <-- EspacioParqueo 
-    EspacioParqueo  <--  Vehiculo 
-    Vehiculo  <--  Propietario 
-    Registro  <--  Vehiculo 
-    Registro  <--  EspacioParqueo 
-    Parqueadero  <--  Tarifa
+    Parqueadero  <-- EspacioParqueo : administra espacios
+    EspacioParqueo  <--  Vehiculo : asignar vehiculo, liberar espacio
+    Vehiculo  <--  Propietario : obtener informacion
+    Registro  <--  Vehiculo : calcular costo, registrar salida
+    Registro  <--  EspacioParqueo : asociar espacio ocupado
+    Parqueadero  <--  Tarifa : calcular costo
+
 ```
 
 Este modelo permite reflejar cómo la clase principal, que es Parqueadero, interactúa con las demás clases que le permiten realizar sus operaciones, entre las cuales se incluyen manejar los espacios y la entrada y salida de vehículos.
